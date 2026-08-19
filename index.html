@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Convert images into RGB565 C arrays for ESP32 TFT displays.">
+  <title>ESP32 Image → C Array Converter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">▣</div>
+      <div>
+        <div class="brand-name">ESP32 Image → C Array</div>
+        <div class="brand-sub">TFT Asset Converter · v1.0.0</div>
+      </div>
+    </div>
+    <a class="github-link" href="https://github.com/" target="_blank" rel="noopener">GitHub ↗</a>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <span class="eyebrow">ESP32 • TFT • RGB565</span>
+      <h1>Turn any image into<br><span>ESP32-ready C code.</span></h1>
+      <p>Resize your image, convert it to RGB565 and download a ready-to-use <code>.h</code> file. Everything runs locally in your browser.</p>
+    </section>
+
+    <section class="workspace">
+      <div class="panel controls-panel">
+        <h2>1. Choose your image</h2>
+        <label class="dropzone" id="dropzone" for="fileInput">
+          <input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp,image/bmp">
+          <div class="upload-icon">↑</div>
+          <strong>Drop an image here</strong>
+          <span>or click to browse</span>
+          <small>PNG, JPG, WEBP or BMP</small>
+        </label>
+
+        <div id="fileInfo" class="file-info hidden">
+          <div class="file-thumb"><img id="fileThumb" alt="Selected image"></div>
+          <div class="file-details">
+            <strong id="fileName">—</strong>
+            <span id="fileDimensions">—</span>
+          </div>
+          <button id="removeFile" class="icon-btn" type="button" aria-label="Remove image">×</button>
+        </div>
+
+        <h2 class="settings-title">2. Conversion settings</h2>
+
+        <div class="form-grid">
+          <label>
+            <span>Display preset</span>
+            <select id="preset">
+              <option value="custom">Custom</option>
+              <option value="ili9341-240x320" selected>ILI9341 · 240 × 320</option>
+              <option value="st7735-128x160">ST7735 · 128 × 160</option>
+              <option value="st7789-240x240">ST7789 · 240 × 240</option>
+              <option value="st7789-320x240">ST7789 · 320 × 240</option>
+            </select>
+          </label>
+
+          <div class="two-col">
+            <label>
+              <span>Width</span>
+              <input id="width" type="number" min="1" max="2048" value="240">
+            </label>
+            <label>
+              <span>Height</span>
+              <input id="height" type="number" min="1" max="2048" value="320">
+            </label>
+          </div>
+
+          <label>
+            <span>Color format</span>
+            <select id="format">
+              <option value="rgb565" selected>RGB565 · 16-bit</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Resize mode</span>
+            <select id="resizeMode">
+              <option value="fit">Fit · keep aspect ratio</option>
+              <option value="crop">Crop · fill display</option>
+              <option value="stretch">Stretch · exact size</option>
+            </select>
+          </label>
+
+          <label>
+            <span>Rotation</span>
+            <select id="rotation">
+              <option value="0" selected>0°</option>
+              <option value="90">90°</option>
+              <option value="180">180°</option>
+              <option value="270">270°</option>
+            </select>
+          </label>
+
+          <label class="check-row">
+            <input id="swapBytes" type="checkbox">
+            <span>Swap RGB565 bytes</span>
+          </label>
+
+          <label class="check-row">
+            <input id="progmem" type="checkbox" checked>
+            <span>Use <code>PROGMEM</code></span>
+          </label>
+        </div>
+
+        <div class="memory-card">
+          <div>
+            <span>Estimated image memory</span>
+            <strong id="memoryEstimate">150.0 KB</strong>
+          </div>
+          <span id="memoryStatus" class="status good">Good for flash</span>
+        </div>
+
+        <button id="convertBtn" class="primary-btn" type="button" disabled>Convert image → C array</button>
+      </div>
+
+      <div class="panel preview-panel">
+        <div class="panel-heading">
+          <div>
+            <h2>3. Preview</h2>
+            <span id="previewMeta">No image selected</span>
+          </div>
+          <button id="resetBtn" class="text-btn" type="button">Reset</button>
+        </div>
+
+        <div class="preview-stage" id="previewStage">
+          <div class="empty-preview">
+            <div class="empty-icon">◈</div>
+            <strong>Your TFT preview will appear here</strong>
+            <span>Upload an image to get started.</span>
+          </div>
+          <canvas id="previewCanvas" hidden></canvas>
+        </div>
+
+        <div class="output-heading">
+          <div>
+            <h2>4. C array output</h2>
+            <span id="outputMeta">Convert an image to generate code.</span>
+          </div>
+          <button id="copyBtn" class="secondary-btn" type="button" disabled>Copy code</button>
+        </div>
+
+        <textarea id="codeOutput" class="code-output" spellcheck="false" readonly placeholder="// Your generated C array will appear here..."></textarea>
+
+        <div class="download-row">
+          <button id="downloadBtn" class="primary-btn" type="button" disabled>Download .h</button>
+          <button id="downloadExampleBtn" class="secondary-btn" type="button">Download example .ino</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-grid">
+      <article class="info-card">
+        <span class="info-number">01</span>
+        <h3>Local processing</h3>
+        <p>Your image is processed inside your browser. It is not uploaded to a server.</p>
+      </article>
+      <article class="info-card">
+        <span class="info-number">02</span>
+        <h3>RGB565</h3>
+        <p>16-bit RGB565 is a practical format for common ESP32 SPI TFT displays.</p>
+      </article>
+      <article class="info-card">
+        <span class="info-number">03</span>
+        <h3>Ready to use</h3>
+        <p>Include the generated header and draw it with TFT_eSPI or your own display library.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <span>ESP32 Image → C Array Converter · v1.0.0</span>
+    <span>Built for makers & embedded developers.</span>
+  </footer>
+
+  <div id="toast" class="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
