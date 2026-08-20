@@ -1,11 +1,47 @@
-# ESP32 Image → C Array Converter
+# Image to C Array Converter for ESP32 TFT
 
-## v1.1.0
+A browser-based image conversion and code-generation tool for ESP32-based TFT display projects.
 
-Image → RGB565 C array + generated `Main.ino` for ESP32/ESP8266 TFT projects.
+This project converts user-selected images into **RGB565 hexadecimal pixel data**, generates a corresponding C/C++ header file, and creates a complete Arduino-compatible ESP32 TFT project based on the selected ESP32 board, TFT display, resolution, orientation, and GPIO configuration.
 
-Features: ESP32 DevKit V1, ESP32-S3 DevKitC-1, ESP32-C3 DevKitM-1 and ESP8266 NodeMCU presets; editable CS/DC/RST GPIO; 1.3/1.8/2.4/2.8 inch display presets; ILI9341/ST7735/ST7789; pixel-oriented preview; raw RGB565 memory estimate; `.h` download; `Main.ino` download; project ZIP with both files.
+The primary objective is to simplify the process of displaying custom images on SPI TFT displays using ESP32 microcontrollers without manually converting images or writing the display initialization code.
 
-The generated sketch uses Adafruit GFX and the selected Adafruit display library. Verify GPIO wiring before upload.
 
-GitHub Pages: Settings → Pages → Deploy from a branch → `main` → `/ (root)`.
+
+# Project Overview
+
+Displaying custom images on an embedded TFT display normally requires several manual steps:
+
+1. Resize the image to match the TFT resolution.
+2. Convert the image into a suitable pixel format.
+3. Convert RGB data into RGB565.
+4. Generate a C/C++ array.
+5. Store the image data in program memory.
+6. Configure the TFT display driver.
+7. Configure SPI pins.
+8. Configure CS, DC and RST pins.
+9. Write the Arduino display code.
+10. Organize the generated `.ino` and `.h` files correctly.
+
+This project automates the complete process.
+
+The user only needs to:
+
+```text
+Upload Image
+      ↓
+Select ESP32 Board
+      ↓
+Select TFT Display
+      ↓
+Configure GPIO Pins
+      ↓
+Generate Code
+      ↓
+Download Project
+      ↓
+Open in Arduino IDE
+      ↓
+Upload to ESP32
+      ↓
+Display Image
