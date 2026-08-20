@@ -233,13 +233,13 @@ function zip(items) {
 }
 function project() {
 	let b = zip([
-			{ name: 'ESP32_TFT_Project/Main.ino', data: main() },
-			{ name: 'ESP32_TFT_Project/image_rgb565.h', data: code },
+			{ name: 'ESP32_TFT/ESP32_TFT.ino', data: main() },
+			{ name: 'ESP32_TFT/image_rgb565.h', data: code },
 		]),
 		u = URL.createObjectURL(b),
 		a = document.createElement('a');
 	a.href = u;
-	a.download = 'ESP32_TFT_Project.zip';
+	a.download = 'ESP32_TFT.zip';
 	a.click();
 	URL.revokeObjectURL(u);
 	toast('Project ZIP downloaded.');
@@ -269,7 +269,7 @@ $('copy').onclick = async () => {
 	}
 };
 $('dh').onclick = () => dl('image_rgb565.h', code, 'text/x-c');
-$('dm').onclick = () => dl('Main.ino', main());
+$('dm').onclick = () => dl('ESP32_TFT.ino', main());
 $('project').onclick = project;
 $('reset').onclick = () => {
 	board.value = 'devkit';
