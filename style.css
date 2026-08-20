@@ -43,14 +43,11 @@ header a {
     align-items: center
 }
 
-.brand>b {
-    background: var(--dark);
-    color: #fff;
-    border-radius: 9px;
-    width: 35px;
+.brand img {
+    Width: 35px;
     height: 35px;
-    display: grid;
-    place-items: center
+    object-fit: contain;
+    boarder-radius: 9px;
 }
 
 .brand span {
