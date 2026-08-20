@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>ESP32 Image to C Array Converter</title>
+    <title>Image to C Array Converter for ESP32</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -14,26 +14,24 @@
             <img src = "assets/logo.png" alt = "Logo">
             <span>
                 <strong>Image into C Array</strong>
-                <small> by @Techbynandhu </small>
+                <small> by @TechbyNandhu </small>
             </span>
         </div>
-        <a href="https://github.com/nandhu9342/esp32-image-to-c-array" target="_blank">GitHub</a>
+        <a href="https://github.com/nandhu9342" target="_blank">GitHub</a>
     </header>
     <main>
         <section class="hero"><label>ESP32 • TFT • RGB565</label>
             <h1>Turn any image into<br><em>ready-to-use TFT code.</em></h1>
-            <p>Generate an RGB565 image header and a matching <code>Main.ino</code> for your board, display driver and
-                GPIO pins.</p>
+            <p>A Simple Web Based Tool To Convert Images into C Array for TFT Display, Generate <code>.ino</code> and <code>.h</code> Files with configurable GPIO Pin Selection.</p>
         </section>
         <section class="grid">
             <article class="card">
-                <h2>1. Choose your image</h2><label class="drop" id="drop"><input id="file" type="file"
-                        accept="image/*"><b>↑</b><strong>Drop an image here</strong><span>or click to
-                        browse</span><small>PNG, JPG, WEBP or BMP</small></label>
+                <h2>1. Choose your Image</h2><label class="drop" id="drop"><input id="file" type="file"
+                        accept="image/*"><b>+</b><strong>Drop or Click Here</strong><span>to upload file</span><small>PNG, JPG, WEBP</small></label>
                 <div id="info" class="info hidden"><img id="thumb">
                     <div><strong id="fname">—</strong><small id="fdim">—</small></div><button id="remove">×</button>
                 </div>
-                <h2 class="mt">2. Display & ESP32 settings</h2>
+                <h2 class="mt">2. Display And ESP32 Settings</h2>
                 <div class="forms">
                     <label>ESP board<select id="board">
                             <option value="devkit">ESP32 DevKit V1 / WROOM</option>
@@ -43,10 +41,10 @@
                             <option value="custom">Custom ESP board</option>
                         </select></label>
                     <label>Display size<select id="size">
-                            <option value="1.3">1.3″ · 240 × 240</option>
-                            <option value="1.8">1.8″ · 128 × 160</option>
-                            <option value="2.4" selected>2.4″ · 240 × 320</option>
-                            <option value="2.8">2.8″ · 240 × 320</option>
+                            <option value="1.3">240 X 240 (1.3″)</option>
+                            <option value="1.8">128 X 160 (1.8″)</option>
+                            <option value="2.4" selected>240 X 320 (2.4″)</option>
+                            <option value="2.8">240 X 320 (2.8″)</option>
                         </select></label>
                     <label>Display driver<select id="driver">
                             <option value="ILI9341">ILI9341</option>
@@ -56,9 +54,9 @@
                     <div class="tw"><label>Width<input id="w" type="number" min="1" max="2048"
                                 value="240"></label><label>Height<input id="h" type="number" min="1" max="2048"
                                 value="320"></label></div>
-                    <div class="pins"><label>CS GPIO<input id="cs" type="number" value="5"></label><label>DC GPIO<input
-                                id="dc" type="number" value="2"></label><label>RST GPIO<input id="rst" type="number"
-                                value="4"></label></div>
+                    <div class="pins"><label>CS GPIO<input id="cs" type="number" value="15"></label><label>DC GPIO<input
+                                id="dc" type="number" value="0"></label><label>RST GPIO<input id="rst" type="number"
+                                value="2"></label></div>
                     <div class="note">SCK and MOSI use the board's default hardware SPI pins. MISO is not needed for
                         this image output.</div>
                     <label>Resize<select id="resize">
@@ -78,7 +76,7 @@
                 <div class="memory">
                     <div><small>Estimated raw RGB565 image memory</small><strong id="mem">150.00 KB</strong><small
                             id="detail">76,800 pixels × 2 bytes</small></div><span id="memtag">76,800 pixels</span>
-                </div><button class="primary" id="convert" disabled>Convert image → C array</button>
+                </div><button class="primary" id="convert" disabled>Convert Image → C Array</button>
             </article>
             <article class="card">
                 <div class="heading">
@@ -92,17 +90,17 @@
                 </div>
                 <div class="heading output">
                     <div>
-                        <h2>4. Generated files</h2><small id="ometa">Convert an image to generate your files.</small>
-                    </div><button class="secondary" id="copy" disabled>Copy C code</button>
+                        <h2>4. Generated files</h2><small id="ometa">Here is the Generated .h file of the Image.</small>
+                    </div><button class="secondary" id="copy" disabled>Copy the Code</button>
                 </div><textarea id="code" readonly
                     placeholder="// Your generated RGB565 C array will appear here..."></textarea>
                 <div class="downloads"><button class="secondary" id="dh" disabled>Download
-                        image_rgb565.h</button><button class="secondary" id="dm" disabled>Download Main.ino</button>
-                </div><button class="primary project" id="project" disabled>Download project · Main.ino + .h</button>
+                        image_rgb565.h</button><button class="secondary" id="dm" disabled>Download ESP32_TFT.ino</button>
+                </div><button class="primary project" id="project" disabled>Download both ESP32_TFT.ino + image_rgb565.h</button>
             </article>
         </section>
     </main>
-    <footer>ESP32 Image → C Array Converter · v1.1.0 <span>Local browser processing</span></footer>
+    <footer>ESP32 Image → C Array Converter v1.1.0 - @TechByNandhu <span>Local browser processing</span></footer>
     <div id="toast"></div>
     <script src="script.js"></script>
 </body>
