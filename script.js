@@ -148,7 +148,7 @@ function gen() {
 		'',
 	];
 	if ($('pgm').checked) a.push('#include <pgmspace.h>', '');
-	a.push(`const uint16_t ${name}${$('pgm').checked ? ' PROGMEM' : ''}[] = {`);
+	a.push(`const uint16_t ${name}[]${$('pgm').checked ? ' PROGMEM' : ''} = {`);
 	for (let i = 0; i < v.length; i += 12)
 		a.push('  ' + v.slice(i, i + 12).join(', ') + (i + 12 < v.length ? ',' : ''));
 	a.push('};', `// Draw: tft.drawRGBBitmap(0, 0, ${name}, ${w}, ${h});`);
