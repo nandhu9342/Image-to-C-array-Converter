@@ -18,7 +18,7 @@
     --blue-light: #e0f6ff;
     --blue-soft: #f2fbff;
 
-    --preview: #080d14;
+    --preview: #64748b;
 
     --success-bg: #ecfdf5;
     --success-text: #087443;
@@ -594,9 +594,8 @@ input[type="number"]:focus {
 }
 
 .secondary {
-    background: #ffffff;
-
-    color: var(--text);
+    background: #0ea5e9;
+    color: var(--blue-soft);
 }
 
 .secondary:hover:not(:disabled) {
@@ -676,7 +675,7 @@ button:disabled {
 
     background: var(--preview);
 
-    border: 1px solid #172334;
+    border: 1px solid #64748b;
 
     border-radius: 11px;
 
