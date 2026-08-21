@@ -171,11 +171,9 @@ h1 em {
 
 .grid {
     display: grid;
-
-    grid-template-columns: 430px 1fr;
-
+    grid-template-columns: 430px minmax(0, 1fr);
+    grid-template-rows: auto auto;
     gap: 20px;
-
     align-items: start;
 }
 
@@ -202,6 +200,22 @@ h1 em {
     box-shadow:
         0 10px 30px rgba(11, 18, 32, 0.07);
 }
+
+.grid > .card:first-child {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+}
+
+.preview-card {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.generated-card {
+    grid-column: 2;
+    grid-row: 2;
+}
+
 
 h2 {
     font-size: 16px;
@@ -865,11 +879,18 @@ footer {
     transform: translate(-50%, 0);
 }
 
-
 @media (max-width: 850px) {
 
     .grid {
         grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+    .grid > .card:first-child,
+    .preview-card,
+    .generated-card {
+        grid-column: 1;
+        grid-row: auto;
     }
 
     .hero {
