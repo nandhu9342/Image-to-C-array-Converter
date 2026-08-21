@@ -66,7 +66,7 @@ header a {
 
     border-radius: 9px;
 
-    font-size: 13px;
+    font-size: 15px;
     font-weight: 600;
 
     transition:
@@ -109,7 +109,7 @@ header a:hover {
 }
 
 .brand strong {
-    font-size: 14px;
+    font-size: 22px;
     font-weight: 750;
     color: var(--text);
 }
