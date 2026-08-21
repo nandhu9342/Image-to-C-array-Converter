@@ -346,14 +346,20 @@ button:disabled {
 
 .preview {
     margin-top: 13px;
+    width: fit-content;
+    max-width: 100%;
     min-height: 0;
-    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+
     background: #0d131c;
     border-radius: 11px;
+    padding: 18px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 18px;
+
     overflow: hidden;
 }
 
@@ -368,24 +374,30 @@ button:disabled {
 }
 
 .preview #empty {
-    text-align: center;
-    color: #98a2b3;
+    width: 240px;
+    height: 320px;
+
     display: flex;
     flex-direction: column;
-    gap: 5px
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+    color: #98a2b3;
+    gap: 5px;
 }
 
 .preview #empty b {
-    font-size: 30px
+    font-size: 30px;
 }
 
 .preview #empty strong {
     color: #dce2ea;
-    font-size: 12px
+    font-size: 12px;
 }
 
 .preview #empty span {
-    font-size: 10px
+    font-size: 10px;
 }
 
 .output {
