@@ -58,7 +58,7 @@
                     <div class="pins"><label>CS GPIO<input id="cs" type="number" value="15"></label><label>DC GPIO<input
                                 id="dc" type="number" value="0"></label><label>RST GPIO<input id="rst" type="number"
                                 value="2"></label></div>
-                    <div class="note">SCK and MOSI use the board's default hardware SPI pins. MISO is not needed for
+                    <div class="note">SCK/CLK use GPIO14 and MOSI/SDA use GPIO13 or Otherwise use board's default hardware SPI pins. LED use 3.3v. MISO is not needed for
                         this image output.</div>
                     <label>Resize<select id="resize">
                             <option value="fit">Fit · keep aspect ratio</option>
