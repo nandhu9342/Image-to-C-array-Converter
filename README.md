@@ -25,6 +25,24 @@ Displaying custom images on an embedded TFT display normally requires several ma
 
 This project automates the complete process.
 
+
+# Connections 
+
+| TFT DISPLAY | ESP32 BOARD | ABOUT |
+|-------------|-------------|-------|
+|     VCC     |     3.3V    | POWER SUPPLY |
+|     GND     |    GND      | GROUND |
+|     CS      |   GPIO15    |CHIP SELECT - YOU CAN BE CHANGE BY SETTINGS |
+|     RST     |    GPTO2    | RESET - YOU CAN BE CHANGE BY SETTINGS |
+|     DC      |    GPIO0    | DATA COMMAND - YOU CAN BE CHANGE BY SETTINGS |
+|  MOSI/SDA   |   GPIO13    |DATA - USE DEFAULT MOSI/SDA PIN |
+|   SCL/CLK   |   GPIO14    | CLOCK - USE DEFAULT SCL/SCK PIN |
+|     LED     |    3.3V     |     BACKLIGHT            |
+
+
+
+
+
 The user only needs to:
 
 ```text
@@ -44,4 +62,4 @@ Open in Arduino IDE
       ↓
 Upload to ESP32
       ↓
-Display Image
+Display Imag
